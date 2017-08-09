@@ -261,7 +261,9 @@ socket.on('move', function(data) {
 });
 
 socket.on('userConnect', function(data) {
+    console.log(UserID);
     if (UserID == -1) UserID = data.UserID;
+    console.log(UserID);
 });
 
 socket.on('userDisconnect', function(data) {
