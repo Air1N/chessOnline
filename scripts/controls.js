@@ -48,7 +48,7 @@ window.onmousedown = function(e) {
                     y: j
                 };
 
-                if (pieces[j][i] !== null && ((side == 1 && pieces[j][i].name[pieces[j][i].name.length - 1] == "b") || (side == 0 && pieces[j][i].name[pieces[j][i].name.length - 1] == "w"))) {
+                if (pieces[j][i] !== null && ((side == 1 && pieces[j][i].name[pieces[j][i].name.length - 1] == "b") || (side == 0 && pieces[j][i].name[pieces[j][i].name.length - 1] == "w")) && uSide == side) {
                     selected = {
                         x: i,
                         y: j,

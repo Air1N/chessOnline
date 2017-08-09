@@ -6,7 +6,7 @@ var centerBoardOffset = 420;
 var selected = {};
 var newSpace = {};
 var side = 0;
-var uSide = 0;
+var uSide = -1;
 
 for (var i = 0; i < 8; i++) {
     tile.push([]);
@@ -263,6 +263,7 @@ socket.on('move', function(data) {
 socket.on('userConnect', function(data) {
     console.log(UserID);
     if (UserID == -1) UserID = data.UserID;
+    if (uSide == -1) uSide = data.uSide;
     console.log(UserID);
 });
 
