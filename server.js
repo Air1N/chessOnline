@@ -38,7 +38,7 @@ io.on('connection', function(socket) {
             UserID: UserID
         });
         
-        //allClients--;
+        allClients--;
     });
 });
 
