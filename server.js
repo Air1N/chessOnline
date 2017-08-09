@@ -28,13 +28,13 @@ io.on('connection', function(socket) {
     });
     
     socket.on('move', function(data) {
-        io.emit('move', data);
+        socket.broadcast.emit('move', data);
     });
     
     socket.once('disconnect', function() {
         console.log('ID: ' + UserID + ' disconnected.');
         
-        io.emit('userDisconnect', {
+        socket.broadcast.emit('userDisconnect', {
             UserID: UserID
         });
         
