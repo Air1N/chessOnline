@@ -14,19 +14,23 @@ app.get('/', function(req, res) {
     res.sendFile(__dirname + '/index.html');
 });
 
-io.sockets.on('connection', function(socket) {
+io.on('connection', function(socket) {
     allClients++;
     var UserID = allClients;
 
     console.log('ID: ' + UserID + ' connected.');
-    io.sockets.emit('userConnect', {
+    io.emit('userConnect', {
         UserID: UserID
     });
-
+    
+    socket.on('move', function(data) {
+        io.emit('move', data);
+    });
+    
     socket.once('disconnect', function() {
         console.log('ID: ' + UserID + ' disconnected.');
         
-        io.sockets.emit('userDisconnect', {
+        io.emit('userDisconnect', {
             UserID: UserID
         });
         

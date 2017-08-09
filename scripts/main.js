@@ -252,6 +252,8 @@ function render() {
 
 function move(fx, fy, tx, ty) {
     socket.emit('move', {fx: fx, fy: fy, tx: tx, ty: ty});
+    
+    console.log(fx + " " + fy)
 }
 
 socket.on('move', function(data) {
