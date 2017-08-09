@@ -7,6 +7,11 @@ var selected = {};
 var newSpace = {};
 var side = 0;
 var uSide = -1;
+var hp1 = new Image();
+hp1.src = "assets/hp1.png";
+
+var hp2 = new Image();
+hp2.src = "assets/hp2.png";
 
 for (var i = 0; i < 8; i++) {
     tile.push([]);
@@ -228,16 +233,17 @@ function render() {
             ctx.fillRect(physicsObjects[i].body.x, physicsObjects[i].body.y, physicsObjects[i].body.width, physicsObjects[i].body.height);
         } else {
             ctx.save();
-            if (physicsObjects[i].sprite.rotation != 0) {
+            if (physicsObjects[i].sprite.rotation % 360 != 0) {
                 ctx.translate(physicsObjects[i].body.x + physicsObjects[i].body.width / 2, physicsObjects[i].body.y + physicsObjects[i].body.height / 2);
                 ctx.rotate(physicsObjects[i].sprite.rotation * Math.PI / 180);
                 ctx.translate(-(physicsObjects[i].body.x + physicsObjects[i].body.width / 2), -(physicsObjects[i].body.y + physicsObjects[i].body.height / 2));
             }
-
+            
             if (physicsObjects[i].sprite.animated) {
                 ctx.drawImage(physicsObjects[i].sprite, physicsObjects[i].sprite.width * physicsObjects[i].sprite.frame, 0, physicsObjects[i].sprite.width, physicsObjects[i].sprite.height, physicsObjects[i].body.x, physicsObjects[i].body.y, physicsObjects[i].body.width, physicsObjects[i].body.height);
             } else {
                 ctx.drawImage(physicsObjects[i].sprite, physicsObjects[i].body.x, physicsObjects[i].body.y, physicsObjects[i].body.width, physicsObjects[i].body.height);
+                if (physicsObjects[i].health !== null) ctx.drawImage(eval("hp" + physicsObjects[i].health), physicsObjects[i].body.x, physicsObjects[i].body.y, physicsObjects[i].body.width, physicsObjects[i].body.height);
             }
             ctx.restore();
         }
