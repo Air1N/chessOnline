@@ -38,7 +38,12 @@ window.onmousedown = function(e) {
     mouse.isDown = true;
     mouse.down.x = (e.clientX - display.getBoundingClientRect().left) * (display.width / display.clientWidth);
     mouse.down.y = (e.clientY - display.getBoundingClientRect().top) * (display.height / display.clientHeight);
-
+    
+    
+    if (uSide == 0) {
+        mouse.down.x = display.width - mouse.down.x;
+        mouse.down.y = display.height - mouse.down.y;
+    }
 
     for (var i = 0; i < 8; i++) {
         for (var j = 0; j < 8; j++) {

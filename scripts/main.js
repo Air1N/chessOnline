@@ -1,5 +1,5 @@
 var socket = io();
-var UserID = -1;
+var UserID = 0;
 var tile = [];
 var tileSize = 135;
 var centerBoardOffset = 420;
@@ -75,22 +75,27 @@ var p = [
 ];
 
 var pieces = [
-    [r[0], k[0], b[0], q[0], ki[0], b[1], k[1], r[1]],
+    [r[0], k[0], b[0], ki[0], q[0], b[1], k[1], r[1]],
     [p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7]],
     [null, null, null, null, null, null, null, null],
     [null, null, null, null, null, null, null, null],
     [null, null, null, null, null, null, null, null],
     [null, null, null, null, null, null, null, null],
     [p[8], p[9], p[10], p[11], p[12], p[13], p[14], p[15]],
-    [r[2], k[2], b[2], q[1], ki[1], b[3], k[3], r[3]]
+    [r[2], k[2], b[2], ki[1], q[1], b[3], k[3], r[3]]
 ];
 
 function update() {
     for (var i = 0; i < pieces.length; i++) {
         for (var j = 0; j < pieces[i].length; j++) {
             if (pieces[i][j] !== null) {
-                pieces[i][j].body.x = pieces[i].indexOf(pieces[i][j]) * 135 + centerBoardOffset;
-                pieces[i][j].body.y = pieces.indexOf(pieces[i]) * 135;
+                if (uSide == 0) {
+                    pieces[i][j].body.x = -pieces[i].indexOf(pieces[i][j]) * 135 + centerBoardOffset + 7 * 135;
+                    pieces[i][j].body.y = -pieces.indexOf(pieces[i]) * 135 + 7 * 135;
+                } else {
+                    pieces[i][j].body.x = pieces[i].indexOf(pieces[i][j]) * 135 + centerBoardOffset;
+                    pieces[i][j].body.y = pieces.indexOf(pieces[i]) * 135;
+                }
             }
         }
     }
@@ -238,7 +243,7 @@ function render() {
                 ctx.rotate(physicsObjects[i].sprite.rotation * Math.PI / 180);
                 ctx.translate(-(physicsObjects[i].body.x + physicsObjects[i].body.width / 2), -(physicsObjects[i].body.y + physicsObjects[i].body.height / 2));
             }
-            
+
             if (physicsObjects[i].sprite.animated) {
                 ctx.drawImage(physicsObjects[i].sprite, physicsObjects[i].sprite.width * physicsObjects[i].sprite.frame, 0, physicsObjects[i].sprite.width, physicsObjects[i].sprite.height, physicsObjects[i].body.x, physicsObjects[i].body.y, physicsObjects[i].body.width, physicsObjects[i].body.height);
             } else {
@@ -257,8 +262,13 @@ function render() {
 }
 
 function move(fx, fy, tx, ty) {
-    socket.emit('move', {fx: fx, fy: fy, tx: tx, ty: ty});
-    
+    socket.emit('move', {
+        fx: fx,
+        fy: fy,
+        tx: tx,
+        ty: ty
+    });
+
     console.log(fx + " " + fy)
 }
 
