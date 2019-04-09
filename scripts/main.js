@@ -266,7 +266,8 @@ function render() {
         if (textObjects[i].timer > 0) ctx.fillText(textObjects[i].text, textObjects[i].x, textObjects[i].y);
     }
     
-    if (side == uSide && turnTimer < 80) ctx.fillText("Your Turn", 1920 / 2, 1080 / 2);
+    ctx.fontStyle = "Bold 32px Calibri"
+    if (side == uSide && turnTimer < 150) ctx.fillText("Your Turn", 1920 / 2, 1080 / 2);
 }
 
 function move(fx, fy, tx, ty) {
