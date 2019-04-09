@@ -265,9 +265,14 @@ function render() {
         ctx.fillStyle = textObjects[i].color;
         if (textObjects[i].timer > 0) ctx.fillText(textObjects[i].text, textObjects[i].x, textObjects[i].y);
     }
-    
+    ctx.fillStyle = "white";
+    ctx.strokeStyle = "black";
+    ctx.lineWidth = 5px;
     ctx.font = "Bold 144px Calibri";
-    if (side == uSide && turnTimer < 500) ctx.fillText("Your Turn", 1920 / 2, 1080 / 2);
+    if (side == uSide && turnTimer < 100) {
+        ctx.fillText("Your Turn", 1920 / 2, 1080 / 2);
+        ctx.strokeText("Your Turn", 1920 / 2, 1080 / 2);
+    }
 }
 
 function move(fx, fy, tx, ty) {
