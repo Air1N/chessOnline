@@ -8,6 +8,7 @@ var newSpace = {};
 var side = 0;
 var uSide = -1;
 var hp1 = new Image();
+var turnTimer = 0;
 hp1.src = "assets/hp1.png";
 
 var hp2 = new Image();
