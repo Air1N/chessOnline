@@ -238,8 +238,6 @@ function render() {
     ctx.clearRect(0, 0, display.width, display.height);
     ctx.textAlign = "center";
     
-    if (side == uSide && turnTimer < 80) ctx.fillText("Your Turn", 1920 / 2, 1080 / 2);
-    
     for (var i = 0; i < physicsObjects.length; i++) {
         if (physicsObjects[i].color !== null) {
             ctx.fillStyle = physicsObjects[i].color;
@@ -267,6 +265,8 @@ function render() {
         ctx.fillStyle = textObjects[i].color;
         if (textObjects[i].timer > 0) ctx.fillText(textObjects[i].text, textObjects[i].x, textObjects[i].y);
     }
+    
+    if (side == uSide && turnTimer < 80) ctx.fillText("Your Turn", 1920 / 2, 1080 / 2);
 }
 
 function move(fx, fy, tx, ty) {
