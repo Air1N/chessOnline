@@ -100,6 +100,10 @@ function update() {
             }
         }
     }
+    
+    if (uSide != side) turnTimer = 0;
+    
+    turnTimer++;
 }
 
 function checkJump(fx, fy, tx, ty) {
@@ -234,7 +238,7 @@ function render() {
     ctx.clearRect(0, 0, display.width, display.height);
     ctx.textAlign = "center";
     
-    if (side == uSide && turnTimer < 10) ctx.fillText("Your Turn", 1920 / 2, 1080 / 2);
+    if (side == uSide && turnTimer < 80) ctx.fillText("Your Turn", 1920 / 2, 1080 / 2);
     
     for (var i = 0; i < physicsObjects.length; i++) {
         if (physicsObjects[i].color !== null) {
