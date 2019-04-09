@@ -267,7 +267,7 @@ function render() {
     }
     ctx.fillStyle = "white";
     ctx.strokeStyle = "black";
-    ctx.lineWidth = 5px;
+    ctx.lineWidth = 5;
     ctx.font = "Bold 144px Calibri";
     if (side == uSide && turnTimer < 100) {
         ctx.fillText("Your Turn", 1920 / 2, 1080 / 2);
